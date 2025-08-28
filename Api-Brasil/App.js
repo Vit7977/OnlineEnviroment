@@ -7,6 +7,7 @@ import ScreenDDD from './screens/ScreenDDD';
 import ScreenHolidays from './screens/ScreenHolidays';
 import ScreenCnpj from './screens/ScreenCnpj';
 import ScreenCep from './screens/ScreenCep';
+import ScreenIsbn from './screens/ScreenISBN';
 
 const Drawer = createDrawerNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
         <Drawer.Screen name="Feriados Nacionais" component={ScreenHolidays} options={{drawerIcon: ({color, size}) => (<Ionicons name='calendar' size={size} color={color}/>)}}/>
         <Drawer.Screen name="CNPJ" component={ScreenCnpj} options={{drawerIcon: ({color, size}) => (<Ionicons name='briefcase' size={size} color={color}/>)}}/>
         <Drawer.Screen name="CEP" component={ScreenCep} options={{drawerIcon: ({color, size}) => (<Ionicons name='business' size={size} color={color}/>)}}/>
+        <Drawer.Screen name="ISBN" component={ScreenIsbn} options={{drawerIcon: ({color, size}) => (<Ionicons name='book' size={size} color={color}/>)}}/>
       </Drawer.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

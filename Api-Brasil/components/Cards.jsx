@@ -40,11 +40,14 @@ export function CardCep({ cidade, uf, bairro, rua }) {
     );
 }
 
-export function CardISBN({ autor, titulo, ano, publicador}) {
+export function CardISBN({ autor, titulo, ano, publicador, sinopse}) {
     return (
-        <View style={[styles.card, styles.cardCep]}>
+        <View style={[styles.card, styles.cardISBN]}>
             <Text style={styles.cardTextUpper}> {titulo}</Text>
             <Text style={styles.cardTextUpper}> {autor} </Text>
+            <Text style={{fontWeight: 'bold', color: '#ffee00ff'}}>-----------SINOPSE-----------</Text>
+            <Text style={styles.cardText}> {sinopse} </Text>
+            <Text style={{fontWeight: 'bold', color: '#ffee00ff'}}>------------------------</Text>
             <Text style={styles.cardTextUpper}> {publicador} </Text>
             <Text style={styles.cardTextUpper}> {ano} </Text>
         </View>
@@ -99,7 +102,11 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         textAlign: 'center',
         marginBottom: 4,
+    },
+    cardISBN:{
+        backgroundColor: '#3c3c3c',
+        width: 500,
     }
 });
 
-export default { CardDDD, CardHolidays, CardCnpj, CardCep };
+export default { CardDDD, CardHolidays, CardCnpj, CardCep, CardISBN };
