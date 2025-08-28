@@ -14,6 +14,20 @@ export function InputDDD({onChangeText}){
     );
 }
 
+export function InputHolidays({onChangeText}){
+    return (
+        <View style={styles.inputContainer}>
+            <TextInput 
+                style={styles.input}
+                placeholder="Ano..."
+                maxLength={4}
+                keyboardType="numeric"
+                onChangeText={onChangeText}
+            />
+        </View>
+    );
+}
+
 const styles = StyleSheet.create({
     inputContainer:{
         display: "flex", 
@@ -26,7 +40,7 @@ const styles = StyleSheet.create({
         height: '2rem',
         borderStyle: 'solid',
         borderWidth: '1px',
-        borderColor: '#5a5a5a',
+        borderColor: '#000000',
         borderRadius: '6px',
         color: 'white',
         padding: '5px',

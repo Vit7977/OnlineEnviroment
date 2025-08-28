@@ -10,54 +10,60 @@ function ScreenDDD() {
     const [uf, setUf] = useState("")
 
     const showCities = (value) => {
-        if(!value || value.length !== 2){
+        if (!value || value.length !== 2) {
             return;
         }
 
-        ddd.getDDD(value).then((resposta) =>{
+        ddd.getDDD(value).then((resposta) => {
             console.log(resposta)
             setCities(resposta.cities || [])
             setUf(resposta.state || "...")
-        }).catch((error) =>{
+        }).catch((error) => {
             console.error('Error fetching DDD:', error)
             setCities([])
             setUf("")
         })
     }
 
-    return ( 
+    return (
         <View style={styles.container}>
-            <InputDDD onChangeText={(ddd)=>showCities(ddd.trim())}/>
-            <Text style={styles.titulo}>CIDADES DE 
-                <Text style={{color: '#6edd13'}}> {uf}</Text>
+            <InputDDD onChangeText={(ddd) => showCities(ddd.trim())} />
+            <Text style={styles.titulo}>
+                CIDADES DE 
+                <Text style={{ color: '#6edd13' }}> {uf}</Text>
             </Text>
-            <ScrollView style={styles.scroll}>
+            <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20, display: 'flex', alignItems: 'center' }}>
                 {cities.length > 0 ?
-                (cities.map((cidade, i) =>{
-                    return <CardDDD key={i} city={cidade} uf={uf}/>
-                })) : (<Text style={{color: 'white'}}>Insira um DDD valido para exibir as cidades!</Text>)}
+                    (cities.map((cidade, i) => {
+                        return <CardDDD key={i} city={cidade} uf={uf} />
+                    })) : (
+                        <Text style={{ color: 'white', textAlign: 'center', marginTop: 10 }}>
+                            Insira um DDD válido para exibir as cidades!
+                        </Text>
+                    )}
             </ScrollView>
         </View>
-     );
+    );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        display: 'flex', 
-        justifyContent: 'flex-start', 
-        alignItems: "center"
+    container: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: "center",
+        backgroundColor: '#6b6b6b'
     },
-    titulo:{
-        color: 'white', 
-        fontWeight: 'bold', 
-        fontSize: '20px', 
-        marginTop: '1rem'
+    titulo: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20,     
+        marginTop: 16   
     },
-    scroll:{
+    scroll: {
         width: '100%',
-        height: '100vh', 
-        padding: '10px', 
-        borderRadius: '10px'
+        flex: 1,          
+        padding: 10,       
+        borderRadius: 10, 
     }
 })
 

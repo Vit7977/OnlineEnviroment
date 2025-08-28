@@ -1,13 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import {Ionicons} from '@expo/vector-icons'
 import ScreenDDD from './screens/ScreenDDD';
+import ScreenHolidays from './screens/ScreenHolidays';
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <ScreenDDD/>
+    <NavigationContainer style={styles.container}>
+      <Drawer.Navigator screenOptions={{
+        headerStyle:{backgroundColor: '#222222'},
+        headerTintColor: '#fff',
+        drawerStyle: {backgroundColor: '#222222'},
+        drawerLabelStyle: {color: '#fff'},
+        drawerActiveTintColor: '#fff',
+        drawerInactiveTintColor: '#fff',
+      }}>
+        <Drawer.Screen name="DDD" component={ScreenDDD} options={{drawerIcon: ({color, size}) => (<Ionicons name='call' size={size} color={color}/>)}}/>
+        <Drawer.Screen name="Feriados Nacionais" component={ScreenHolidays} options={{drawerIcon: ({color, size}) => (<Ionicons name='calendar' size={size} color={color}/>)}}/>
+      </Drawer.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 
