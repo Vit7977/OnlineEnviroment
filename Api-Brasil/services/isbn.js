@@ -1,7 +1,7 @@
 import * as config from "./config"
 
-export const getCnpj = async (cnpj) =>{
-    const url = `${config.url_api()}/cnpj/v1/${cnpj}`;
+export const getIsbn = async (isbn) =>{
+    const url = `${config.url_api()}/isbn/v1/${isbn}`;
     const options = {
         method: 'GET',
         headers: {
@@ -18,7 +18,7 @@ export const getCnpj = async (cnpj) =>{
 
         return await response.json()
     }catch(error){
-        console.error('Error fetching CNPJ:', error)
+        console.error('Error fetching ISBN:', error)
         throw error; 
     }
 }

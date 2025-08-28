@@ -1,48 +1,51 @@
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text} from "react-native";
 import { useState } from "react";
 import { InputCep } from "../components/Inputs";
-import * as cep from "../services/cep.js";
+import * as CEP from "../services/cep.js";
 import { CardCep } from "../components/Cards.jsx";
 
-export default function Cep() {
-  const [value, setValue] = useState("");
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+export default function ScreenCep() {
 
-  const handleSearch = async () => {
-    try {
-      const response = await cep.getCep(value);
-      setData(response);
-      setError(null);
-    } catch (err) {
-      setError("CEP inválido ou não encontrado");
-      setData(null);
-    }
-  };
+  const [cep, setCep] = useState(null)
+
+  const showCep = (value) => {
+          if (!value || value.length !== 8) {
+              return;
+          }
+  
+          CEP.getCep(value).then((resposta) => {
+              console.log(resposta)
+              setCep(resposta || null)
+          }).catch((error) => {
+              console.error('Error fetching CEP:', error)
+              setCep(null)
+          });
+        }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>Consulta de CEP</Text>
 
-      <InputCep value={value} setValue={setValue} onSubmit={handleSearch} />
+      <InputCep onChangeText={(text) => showCep(text.trim())} />
 
-      {error && <Text style={styles.error}>{error}</Text>}
-
-      {data && (
-        <View style={styles.result}>
-          <CardCep title="Logradouro" value={data.logradouro} />
-          <CardCep title="Bairro" value={data.bairro} />
-          <CardCep title="Cidade" value={data.localidade} />
-          <CardCep title="UF" value={data.uf} />
+      {cep ? (
+        <View>
+          <CardCep cidade={cep.city} 
+          uf={cep.state} 
+          bairro={cep.neighborhood} 
+          rua={cep.street} />
         </View>
-      )}
-    </ScrollView>
+            ) : (
+                <View><Text>Insira um CEP valido!</Text></View>
+            )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, padding: 20, backgroundColor: "#fff" },
-  title: { fontSize: 20, fontWeight: "bold", marginBottom: 10 },
-  error: { marginTop: 10, color: "red" },
-  result: { marginTop: 20, gap: 10 },
+  container: { flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: "center",
+        backgroundColor: '#3d3d3dff' },
+  title: { fontSize: 20, fontWeight: "bold", marginBottom: 10, color: '#fff' },
 });

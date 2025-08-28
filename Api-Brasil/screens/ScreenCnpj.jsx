@@ -1,54 +1,55 @@
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { useState } from "react";
-import { InputCnpj } from "../components/Inputs"; 
-import * as cnpj from "../services/cnpj.js";
+import { InputCnpj } from "../components/Inputs.jsx";
+import * as CNPJ from '../services/cnpj.js'
 import { CardCnpj } from "../components/Cards.jsx";
 
-export default function Cnpj() {
-  const [value, setValue] = useState("");
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+export default function ScreenCnpj() {
+  const [cnpj, setCnpj] = useState(null);
 
-  const handleSearch = async () => {
-    try {
-      const response = await cnpj.getCnpj(value);
-      setData(response);
-      setError(null);
-    } catch (err) {
-      setError("CNPJ inválido ou não encontrado");
-      setData(null);
-    }
-  };
-
+    const showCnpj = (value) => {
+          if (!value || value.length !== 14) {
+              return;
+          }
+  
+          CNPJ.getCnpj(value).then((resposta) => {
+              console.log(resposta)
+              setCnpj(resposta || null)
+          }).catch((error) => {
+              console.error('Error fetching CNPJ:', error)
+              setCnpj(null)
+          });
+        }
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
+      <InputCnpj  onChangeText={(text) => showCnpj(text.trim())}/>
       <Text style={styles.title}>Consulta de CNPJ</Text>
 
-      <InputCnpj value={value} setValue={setValue} onSubmit={handleSearch} />
-
-      {error && <Text style={styles.error}>{error}</Text>}
-
-      {data && (
+      {cnpj ? (
         <View style={styles.result}>
-          <CardCnpj title="Nome" value={data.nome} />
-          <CardCnpj title="Fantasia" value={data.fantasia} />
-          <CardCnpj title="Abertura" value={data.abertura} />
-          <CardCnpj title="Situação" value={data.situacao} />
-          <CardCnpj title="UF" value={data.uf} />
-          <CardCnpj title="Município" value={data.municipio} />
-          <CardCnpj title="Bairro" value={data.bairro} />
-          <CardCnpj title="Logradouro" value={data.logradouro} />
-          <CardCnpj title="Número" value={data.numero} />
-          <CardCnpj title="CEP" value={data.cep} />
+          <CardCnpj 
+            name={cnpj.razao_social} 
+            fantasia={cnpj.nome_fantasia}
+            abertura={cnpj.data_inicio_atividade}
+            situacao={cnpj.decricao_situacao_cadastral}
+            uf={cnpj.uf}
+            cidade={cnpj.municipio}
+            bairro={cnpj.bairro}
+            rua={cnpj.logradouro}
+            numero={cnpj.numero}
+            cep={cnpj.cep} />
         </View>
+      ) : (
+          <View><Text>Insira um CNPJ valido!</Text></View>
       )}
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, padding: 20, backgroundColor: "#fff" },
-  title: { fontSize: 20, fontWeight: "bold", marginBottom: 10 },
-  error: { marginTop: 10, color: "red" },
-  result: { marginTop: 20, gap: 10 },
+  container: { flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: "center",
+        backgroundColor: '#3d3d3dff' },
+  title: { fontSize: 20, fontWeight: "bold", marginBottom: 10, color: '#fff' },
 });

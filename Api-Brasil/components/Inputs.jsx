@@ -28,6 +28,48 @@ export function InputHolidays({onChangeText}){
     );
 }
 
+export function InputCnpj({onChangeText}){
+   return (
+   <View style={styles.inputContainer}>
+            <TextInput 
+                style={styles.input}
+                placeholder="CNPJ..."
+                maxLength={14}
+                keyboardType="numeric"
+                onChangeText={onChangeText}
+            />
+        </View>
+        );
+}
+
+export function InputCep({onChangeText}){
+    return (
+    <View style={styles.inputContainer}>
+            <TextInput 
+                style={styles.input}
+                placeholder="CEP..."
+                maxLength={8}
+                keyboardType="numeric"
+                onChangeText={onChangeText}
+            />
+        </View>
+        )
+}
+
+export function InputISBN({onChangeText}){
+    return (
+    <View style={styles.inputContainer}>
+            <TextInput 
+                style={styles.input}
+                placeholder="ISBN..."
+                maxLength={13}
+                keyboardType="numeric"
+                onChangeText={onChangeText}
+            />
+        </View>
+        )
+}
+
 const styles = StyleSheet.create({
     inputContainer:{
         display: "flex", 
@@ -48,4 +90,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default { InputDDD }
+export default { InputDDD, InputHolidays, InputCnpj, InputCep, InputISBN }

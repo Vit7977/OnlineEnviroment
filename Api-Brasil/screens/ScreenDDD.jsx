@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: "center",
-        backgroundColor: '#6b6b6b'
+        backgroundColor: '#5f5f5fff'
     },
     titulo: {
         color: 'white',
