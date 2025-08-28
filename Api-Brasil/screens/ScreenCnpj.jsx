@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { useState } from "react";
-import { InputCep } from "../components/Inputs"; 
+import { InputCnpj } from "../components/Inputs"; 
 import * as cnpj from "../services/cnpj.js";
 import { CardCnpj } from "../components/Cards.jsx";
 
@@ -24,7 +24,7 @@ export default function Cnpj() {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Consulta de CNPJ</Text>
 
-      <InputCep value={value} setValue={setValue} onSubmit={handleSearch} />
+      <InputCnpj value={value} setValue={setValue} onSubmit={handleSearch} />
 
       {error && <Text style={styles.error}>{error}</Text>}
 
