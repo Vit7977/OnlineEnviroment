@@ -40,7 +40,7 @@ export default function ScreenCnpj() {
             cep={cnpj.cep} />
         </View>
       ) : (
-          <View><Text>Insira um CNPJ valido!</Text></View>
+          <View><Text style ={{ color: '#c4c4c4ff'}}>Insira um CNPJ valido!</Text></View>
       )}
     </View>
   );

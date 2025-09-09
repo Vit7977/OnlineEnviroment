@@ -39,7 +39,7 @@ export default function ScreenIsbn() {
           />
         </View>
             ) : (
-                <View><Text>Insira um ISBN valido!</Text></View>
+                <View><Text style={{ color: '#c4c4c4ff'}}>Insira um ISBN valido!</Text></View>
             )}
     </View>
   );

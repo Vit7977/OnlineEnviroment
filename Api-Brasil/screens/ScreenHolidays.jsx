@@ -51,7 +51,7 @@ function ScreenHolidays() {
                         <CardHolidays key={i} name={feriado.name} date={feriado.date} />
                     ))
                 ) : (
-                    <Text style={{ color: 'white', textAlign: 'center', fontSize: 16 }}>
+                    <Text style={{ color: '#c4c4c4ff', textAlign: 'center', fontSize: 16 }}>
                         Insira um ANO válido para exibir os feriados nacionais!
                     </Text>
                 )}
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: "center",
-        backgroundColor: '#0b394b'
+        backgroundColor: '#3d3d3dff'
     },
     titulo: {
         color: 'white',
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         marginTop: 16
     },
     scroll: {
-        width: '100%',
+        width: '40%',
         flex: 1,
         padding: 10,
         borderRadius: 10,

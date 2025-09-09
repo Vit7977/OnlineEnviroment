@@ -37,7 +37,7 @@ function ScreenDDD() {
                     (cities.map((cidade, i) => {
                         return <CardDDD key={i} city={cidade} uf={uf} />
                     })) : (
-                        <Text style={{ color: 'white', textAlign: 'center', marginTop: 10 }}>
+                        <Text style={{ color: '#c4c4c4ff', textAlign: 'center', marginTop: 10 }}>
                             Insira um DDD válido para exibir as cidades!
                         </Text>
                     )}
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: "center",
-        backgroundColor: '#5f5f5fff'
+        backgroundColor: '#3d3d3dff'
     },
     titulo: {
         color: 'white',
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         marginTop: 16   
     },
     scroll: {
-        width: '100%',
+        width: '40%',
         flex: 1,          
         padding: 10,       
         borderRadius: 10, 

@@ -36,7 +36,7 @@ export default function ScreenCep() {
           rua={cep.street} />
         </View>
             ) : (
-                <View><Text>Insira um CEP valido!</Text></View>
+                <View><Text style={styles.textCep}>Insira um CEP valido!</Text></View>
             )}
     </View>
   );
@@ -48,4 +48,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: '#3d3d3dff' },
   title: { fontSize: 20, fontWeight: "bold", marginBottom: 10, color: '#fff' },
+  textCep: {
+    color: '#c4c4c4ff'
+  }
 });
